@@ -1,0 +1,85 @@
+gnono
+-------------------------------------------
+Gnono is a rewrite for GNOME, under the GPL license, of the Windows card
+game WUNO. The objective of this classic game is to discard all of one's
+cards before the opponent does, by matching the value or color of the
+top discard (or playing a wild card).
+
+Runtime requirements:
+  cygwin-1.5.22-1
+  gdk-pixbuf2-2.10.6-1
+  glib2-2.12.4-1
+  gtk2-x11-2.10.6-1
+  libbonoboui2-2.16.0-1
+  libgnome2-2.16.0-1
+  libgnomeui2-2.16.1-1
+  libintl8-0.15-1
+
+Build requirements:
+  cygwin-1.5.22-1
+  autoconf2.5-2.60-2
+  automake1.9-1.9.6-1
+  binutils-20060817-1
+  cygport-0.2.7-1
+  gawk-3.1.5-2
+  gcc-core-3.4.4-1
+  make-3.81-1
+  pkg-config-0.21-1
+  sed-4.1.5-2
+
+Canonical homepage:
+  http://sourceforge.net/projects/gnono/
+
+Canonical download:
+  http://downloads.sourceforge.net/gnono/
+
+-------------------------------------------
+
+Build instructions:
+  unpack gnono-1.9.0-X-src.tar.bz2
+    if you use setup to install this src package, it will be
+	 unpacked under /usr/src automatically
+  cd /usr/src
+  cygport ./gnono-1.9.0-X.cygport all
+
+This will create:
+  /usr/src/gnono-1.9.0-X-src.tar.bz2
+  /usr/src/gnono-1.9.0-X.tar.bz2
+
+-------------------------------------------
+
+Files included in the binary package:
+
+  /etc/postinstall/gnono.sh
+  /usr/bin/gnono.exe
+  /usr/share/doc/Cygwin/gnono-1.9.0.README
+  /usr/share/doc/gnono-1.9.0/AUTHORS
+  /usr/share/doc/gnono-1.9.0/COPYING
+  /usr/share/doc/gnono-1.9.0/ChangeLog
+  /usr/share/doc/gnono-1.9.0/INSTALL
+  /usr/share/doc/gnono-1.9.0/NEWS
+  /usr/share/doc/gnono-1.9.0/README
+  /usr/share/doc/gnono-1.9.0/TODO
+  /usr/share/icons/hicolor/16x16/apps/gnono.png
+  /usr/share/icons/hicolor/22x22/apps/gnono.png
+  /usr/share/icons/hicolor/24x24/apps/gnono.png
+  /usr/share/icons/hicolor/32x32/apps/gnono.png
+  /usr/share/icons/hicolor/48x48/apps/gnono.png
+  /usr/share/locale/de/LC_MESSAGES/gnono.mo
+  /usr/share/locale/fr/LC_MESSAGES/gnono.mo
+  /usr/share/locale/nl/LC_MESSAGES/gnono.mo
+  /usr/share/pixmaps/gnono-about.png
+
+------------------
+
+Port Notes:
+
+----- version 1.9.0-1 -----
+New beta release for GNOME 2.
+
+----- version 0.0.3-1 -----
+Initial release for Cygwin.
+
+
+Cygwin port maintained by:
+http://cygwinports.dotsrc.org/
