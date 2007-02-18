@@ -1,0 +1,5 @@
+inherit gnome2
+
+DESCRIPTION="GNOME version of Windows card game WUNO"
+HOMEPAGE="http://sourceforge.net/projects/gnono/"
+SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"

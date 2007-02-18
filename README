@@ -6,23 +6,24 @@ cards before the opponent does, by matching the value or color of the
 top discard (or playing a wild card).
 
 Runtime requirements:
-  cygwin-1.5.22-1
-  gdk-pixbuf2-2.10.6-1
-  glib2-2.12.4-1
-  gtk2-x11-2.10.6-1
+  cygwin-1.5.24-2
+  gdk-pixbuf2-2.10.9-1
+  glib2-2.12.9-1
+  gtk2-x11-2.10.9-1
   libbonoboui2-2.16.0-1
   libgnome2-2.16.0-1
   libgnomeui2-2.16.1-1
   libintl8-0.15-1
 
 Build requirements:
-  cygwin-1.5.22-1
-  autoconf2.5-2.60-2
-  automake1.9-1.9.6-1
+(besides corresponding devel packages)
+  cygwin-1.5.24-2
+  autoconf2.5-2.61-1
+  automake1.9-1.9.6-2
   binutils-20060817-1
-  cygport-0.2.7-1
-  gawk-3.1.5-2
-  gcc-core-3.4.4-1
+  cygport-0.2.9-1
+  gawk-3.1.5-4
+  gcc-core-3.4.4-3
   make-3.81-1
   pkg-config-0.21-1
   sed-4.1.5-2
@@ -68,11 +69,15 @@ Files included in the binary package:
   /usr/share/locale/de/LC_MESSAGES/gnono.mo
   /usr/share/locale/fr/LC_MESSAGES/gnono.mo
   /usr/share/locale/nl/LC_MESSAGES/gnono.mo
+  /usr/share/man/man6/gnono.6.gz
   /usr/share/pixmaps/gnono-about.png
 
 ------------------
 
 Port Notes:
+
+----- version 1.9.1-1 -----
+Version bump.
 
 ----- version 1.9.0-1 -----
 New beta release for GNOME 2.
