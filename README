@@ -6,26 +6,28 @@ cards before the opponent does, by matching the value or color of the
 top discard (or playing a wild card).
 
 Runtime requirements:
-  cygwin-1.5.24-2
-  gdk-pixbuf2-2.10.9-1
-  glib2-2.12.9-1
-  gtk2-x11-2.10.9-1
-  libbonoboui2-2.16.0-1
-  libgnome2-2.16.0-1
-  libgnomeui2-2.16.1-1
-  libintl8-0.15-1
+  cygwin-1.7.0-45
+  libbonoboui2_0-2.24.1-1
+  libgcc1-4.3.2-2
+  libgdk_pixbuf2.0_0-2.16.1-1
+  libglib2.0_0-2.20.1-1
+  libgnome2_0-2.26.0-1
+  libgnomecanvas2_0-2.26.0-1
+  libgnomeui2_0-2.24.1-1
+  libgtk2.0_0-2.16.1-1
+  libintl8-0.17-10
 
 Build requirements:
 (besides corresponding devel packages)
-  cygwin-1.5.24-2
-  autoconf2.5-2.61-1
-  automake1.9-1.9.6-2
-  binutils-20060817-1
-  cygport-0.2.9-1
-  gawk-3.1.5-4
-  gcc-core-3.4.4-3
-  make-3.81-1
-  pkg-config-0.21-1
+  autoconf2.5-2.63-10
+  automake1.9-1.9.6-10
+  binutils-20080624-2
+  cygport-0.9.6-1
+  gawk-3.1.6-2
+  gcc4-core-4.3.2-2
+  gnome-common-2.26.0-1
+  make-3.81-2
+  pkg-config-0.23b-10
   sed-4.1.5-2
 
 Canonical homepage:
@@ -37,15 +39,15 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  unpack gnono-1.9.0-X-src.tar.bz2
+  unpack gnono-1.9.1-X-src.tar.bz2
     if you use setup to install this src package, it will be
 	 unpacked under /usr/src automatically
   cd /usr/src
-  cygport ./gnono-1.9.0-X.cygport all
+  cygport ./gnono-1.9.1-X.cygport all
 
 This will create:
-  /usr/src/gnono-1.9.0-X-src.tar.bz2
-  /usr/src/gnono-1.9.0-X.tar.bz2
+  /usr/src/gnono-1.9.1-X-src.tar.bz2
+  /usr/src/gnono-1.9.1-X.tar.bz2
 
 -------------------------------------------
 
@@ -53,14 +55,13 @@ Files included in the binary package:
 
   /etc/postinstall/gnono.sh
   /usr/bin/gnono.exe
-  /usr/share/doc/Cygwin/gnono-1.9.0.README
-  /usr/share/doc/gnono-1.9.0/AUTHORS
-  /usr/share/doc/gnono-1.9.0/COPYING
-  /usr/share/doc/gnono-1.9.0/ChangeLog
-  /usr/share/doc/gnono-1.9.0/INSTALL
-  /usr/share/doc/gnono-1.9.0/NEWS
-  /usr/share/doc/gnono-1.9.0/README
-  /usr/share/doc/gnono-1.9.0/TODO
+  /usr/share/applications/gnono.desktop
+  /usr/share/doc/gnono/AUTHORS
+  /usr/share/doc/gnono/COPYING
+  /usr/share/doc/gnono/ChangeLog
+  /usr/share/doc/gnono/NEWS
+  /usr/share/doc/gnono/README
+  /usr/share/doc/gnono/TODO
   /usr/share/icons/hicolor/16x16/apps/gnono.png
   /usr/share/icons/hicolor/22x22/apps/gnono.png
   /usr/share/icons/hicolor/24x24/apps/gnono.png
@@ -76,14 +77,8 @@ Files included in the binary package:
 
 Port Notes:
 
------ version 1.9.1-1 -----
-Version bump.
-
------ version 1.9.0-1 -----
-New beta release for GNOME 2.
-
------ version 0.0.3-1 -----
-Initial release for Cygwin.
+----- version 1.9.1-10 -----
+Initial release for Cygwin 1.7.
 
 
 Cygwin port maintained by:

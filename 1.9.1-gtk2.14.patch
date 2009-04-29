@@ -1,0 +1,204 @@
+? src/xpm/b0-new.xpm
+? src/xpm/b0.png
+? src/xpm/cards.xcf
+Index: src/interface.c
+===================================================================
+RCS file: /cvsroot/gnono/gnono/src/interface.c,v
+retrieving revision 1.16
+diff -u -r1.16 interface.c
+--- src/interface.c	9 Aug 2007 13:57:32 -0000	1.16
++++ src/interface.c	29 Apr 2009 01:32:40 -0000
+@@ -123,8 +123,8 @@
+ 
+     gtk_window_set_resizable (GTK_WINDOW (gn_app), FALSE);
+ 
+-    g_signal_connect (GTK_OBJECT (gn_app), "delete_event",
+-                        GTK_SIGNAL_FUNC (game_quit_cb),
++    g_signal_connect (G_OBJECT (gn_app), "delete_event",
++                        G_CALLBACK (game_quit_cb),
+                         NULL);
+ 
+     /* Create the menu bar */
+@@ -399,8 +399,8 @@
+                                   "fill_color", "red",
+                                   NULL);
+ 
+-    g_signal_connect (GTK_OBJECT (item), "event",
+-                        GTK_SIGNAL_FUNC (gci_pnl_color_picker_cb),
++    g_signal_connect (G_OBJECT (item), "event",
++                        G_CALLBACK (gci_pnl_color_picker_cb),
+                         GINT_TO_POINTER (GN_COLOR_RED));
+ 
+     item = gnome_canvas_item_new (gn_pnl_color_picker,
+@@ -412,8 +412,8 @@
+                            "fill_color", "darkgreen",
+                            NULL);
+ 
+-    g_signal_connect (GTK_OBJECT (item), "event",
+-                        GTK_SIGNAL_FUNC (gci_pnl_color_picker_cb),
++    g_signal_connect (G_OBJECT (item), "event",
++                        G_CALLBACK (gci_pnl_color_picker_cb),
+                         GINT_TO_POINTER (GN_COLOR_GREEN));
+ 
+     item = gnome_canvas_item_new (gn_pnl_color_picker,
+@@ -425,8 +425,8 @@
+                            "fill_color", "blue",
+                            NULL);
+ 
+-    g_signal_connect (GTK_OBJECT (item), "event",
+-                        GTK_SIGNAL_FUNC (gci_pnl_color_picker_cb),
++    g_signal_connect (G_OBJECT (item), "event",
++                        G_CALLBACK (gci_pnl_color_picker_cb),
+                         GINT_TO_POINTER (GN_COLOR_BLUE));
+ 
+     item = gnome_canvas_item_new (gn_pnl_color_picker,
+@@ -438,8 +438,8 @@
+                            "fill_color", "yellow",
+                            NULL);
+ 
+-    g_signal_connect (GTK_OBJECT (item), "event",
+-                        GTK_SIGNAL_FUNC (gci_pnl_color_picker_cb),
++    g_signal_connect (G_OBJECT (item), "event",
++                        G_CALLBACK (gci_pnl_color_picker_cb),
+                         GINT_TO_POINTER (GN_COLOR_YELLOW));
+ 
+     gci_color_picker_hide ();
+@@ -656,8 +656,8 @@
+                                                   "height", GN_CARD_HEIGHT,
+                                                   NULL);
+ 
+-        g_signal_connect (GTK_OBJECT (gci_pile_pick_up), "event",
+-                            GTK_SIGNAL_FUNC (gci_pile_pick_up_clicked_cb), NULL);
++        g_signal_connect (G_OBJECT (gci_pile_pick_up), "event",
++                            G_CALLBACK (gci_pile_pick_up_clicked_cb), NULL);
+     }
+ 
+     if (deck_length () == 0) {
+@@ -761,8 +761,8 @@
+     g_object_unref (p);
+ 
+     if (get_player (player)->type == GN_PLAYER_TYPE_HUMAN) {
+-        g_signal_connect (GTK_OBJECT (gci_new), "event",
+-                            GTK_SIGNAL_FUNC (gci_hand_cards_clicked_cb),
++        g_signal_connect (G_OBJECT (gci_new), "event",
++                            G_CALLBACK (gci_hand_cards_clicked_cb),
+                             GINT_TO_POINTER (make_card_click_data (player, 0)));
+     }
+ 
+@@ -820,8 +820,8 @@
+         g_ptr_array_add (gci, gci_new);
+ 
+         if (get_player (player)->type == GN_PLAYER_TYPE_HUMAN) {
+-            g_signal_connect (GTK_OBJECT (gci_new), "event",
+-                                GTK_SIGNAL_FUNC (gci_hand_cards_clicked_cb),
++            g_signal_connect (G_OBJECT (gci_new), "event",
++                                G_CALLBACK (gci_hand_cards_clicked_cb),
+                                 GINT_TO_POINTER (make_card_click_data (player, get_player (player)->cards->len - 1)));
+         }
+     }
+@@ -851,8 +851,8 @@
+                                                       G_SIGNAL_MATCH_DATA,
+                                                       0, 0, NULL, NULL,
+                                                       GINT_TO_POINTER (make_card_click_data (player, c + 1)));
+-                g_signal_connect (GTK_OBJECT (gci), "event",
+-                                    GTK_SIGNAL_FUNC (gci_hand_cards_clicked_cb),
++                g_signal_connect (G_OBJECT (gci), "event",
++                                    G_CALLBACK (gci_hand_cards_clicked_cb),
+                                     GINT_TO_POINTER (make_card_click_data (player, c)));
+             }
+         }
+Index: src/preferences.c
+===================================================================
+RCS file: /cvsroot/gnono/gnono/src/preferences.c,v
+retrieving revision 1.6
+diff -u -r1.6 preferences.c
+--- src/preferences.c	9 Aug 2007 13:57:32 -0000	1.6
++++ src/preferences.c	29 Apr 2009 01:32:40 -0000
+@@ -71,11 +71,11 @@
+     add_game_play_page ();
+     add_names_page ();
+ 
+-    g_signal_connect (GTK_OBJECT (_dialog), "close",
+-                        GTK_SIGNAL_FUNC (close_cb), NULL);
++    g_signal_connect (G_OBJECT (_dialog), "close",
++                        G_CALLBACK (close_cb), NULL);
+ 
+-    g_signal_connect (GTK_OBJECT (_dialog), "apply",
+-                        GTK_SIGNAL_FUNC (apply_cb), NULL);
++    g_signal_connect (G_OBJECT (_dialog), "apply",
++                        G_CALLBACK (apply_cb), NULL);
+ 
+     _loaded = TRUE;
+ 
+@@ -107,15 +107,15 @@
+     radio_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (_radio_cards_7));
+     gtk_box_pack_start (GTK_BOX (vbox), _radio_cards_7, FALSE, FALSE, 0);
+ 
+-    g_signal_connect (GTK_OBJECT (_radio_cards_7), "toggled",
+-                        GTK_SIGNAL_FUNC (prefs_changed_cb), NULL);
++    g_signal_connect (G_OBJECT (_radio_cards_7), "toggled",
++                        G_CALLBACK (prefs_changed_cb), NULL);
+ 
+     _radio_cards_11 = gtk_radio_button_new_with_label (radio_group, _("11"));
+     gtk_container_set_border_width (GTK_CONTAINER (_radio_cards_11), 2);
+     gtk_box_pack_start (GTK_BOX (vbox), _radio_cards_11, FALSE, FALSE, 0);
+ 
+-    g_signal_connect (GTK_OBJECT (_radio_cards_11), "toggled",
+-                        GTK_SIGNAL_FUNC (prefs_changed_cb), NULL);
++    g_signal_connect (G_OBJECT (_radio_cards_11), "toggled",
++                        G_CALLBACK (prefs_changed_cb), NULL);
+ 
+     /* Add a separator between the two frames */
+     separator = gtk_vseparator_new ();
+@@ -137,23 +137,23 @@
+     radio_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (_radio_score_100));
+     gtk_box_pack_start (GTK_BOX (vbox), _radio_score_100, FALSE, FALSE, 0);
+ 
+-    g_signal_connect (GTK_OBJECT (_radio_score_100), "toggled",
+-                        GTK_SIGNAL_FUNC (prefs_changed_cb), NULL);
++    g_signal_connect (G_OBJECT (_radio_score_100), "toggled",
++                        G_CALLBACK (prefs_changed_cb), NULL);
+ 
+     _radio_score_250 = gtk_radio_button_new_with_label (radio_group, _("250"));
+     gtk_container_set_border_width (GTK_CONTAINER (_radio_score_250), 2);
+     radio_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (_radio_score_100));
+     gtk_box_pack_start (GTK_BOX (vbox), _radio_score_250, FALSE, FALSE, 0);
+ 
+-    g_signal_connect (GTK_OBJECT (_radio_score_250), "toggled",
+-                        GTK_SIGNAL_FUNC (prefs_changed_cb), NULL);
++    g_signal_connect (G_OBJECT (_radio_score_250), "toggled",
++                        G_CALLBACK (prefs_changed_cb), NULL);
+ 
+     _radio_score_500 = gtk_radio_button_new_with_label (radio_group, _("500"));
+     gtk_container_set_border_width (GTK_CONTAINER (_radio_score_500), 2);
+     gtk_box_pack_start (GTK_BOX (vbox), _radio_score_500, FALSE, FALSE, 0);
+ 
+-    g_signal_connect (GTK_OBJECT (_radio_score_500), "toggled",
+-                        GTK_SIGNAL_FUNC (prefs_changed_cb), NULL);
++    g_signal_connect (G_OBJECT (_radio_score_500), "toggled",
++                        G_CALLBACK (prefs_changed_cb), NULL);
+ 
+     /* Show everything and append the new page to the dialog */
+     gtk_widget_show_all (hbox);
+@@ -201,8 +201,8 @@
+                       0,
+                       2, 2);
+ 
+-    g_signal_connect (GTK_OBJECT (_entry_name_human), "changed",
+-                        GTK_SIGNAL_FUNC (prefs_changed_cb), NULL);
++    g_signal_connect (G_OBJECT (_entry_name_human), "changed",
++                        G_CALLBACK (prefs_changed_cb), NULL);
+ 
+     _entry_name_computer = gtk_entry_new ();
+     gtk_table_attach (GTK_TABLE (table),
+@@ -212,8 +212,8 @@
+                       0,
+                       2, 2);
+ 
+-    g_signal_connect (GTK_OBJECT (_entry_name_computer), "changed",
+-                        GTK_SIGNAL_FUNC (prefs_changed_cb), NULL);
++    g_signal_connect (G_OBJECT (_entry_name_computer), "changed",
++                        G_CALLBACK (prefs_changed_cb), NULL);
+ 
+     /* Show everything and append the new page to the dialog */
+     gtk_widget_show_all (table);

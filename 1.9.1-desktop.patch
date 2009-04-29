@@ -1,0 +1,12 @@
+--- origsrc/gnono-1.9.1/Makefile.am	2007-02-17 23:27:38.000000000 -0600
++++ src/gnono-1.9.1/Makefile.am	2009-04-28 20:54:21.904625000 -0500
+@@ -2,6 +2,9 @@
+ 
+ SUBDIRS = doc pixmaps po src
+ 
++desktopdir = $(datadir)/applications
++desktop_DATA = gnono.desktop
++
+ EXTRA_DIST = gnono.desktop.in gnono.spec.in \
+ 	AUTHORS COPYING ChangeLog INSTALL NEWS README TODO \
+ 	intltool-extract.in	\
