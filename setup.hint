@@ -1,5 +1,5 @@
 category: Games Gnome
-requires: cygwin libbonoboui2_2 libgcc1 libglib2.0_0 libgdk_pixbuf2.0_0 libgnome2_0 libgnomecanvas2_0 libgnomeui2_0 libgtk2.0_0
+requires: libbonoboui2_2 libgcc1 libglib2.0_0 libgdk_pixbuf2.0_0 libgnome2_0 libgnomecanvas2_0 libgnomeui2_0 libgtk2.0_0
 sdesc: "A GNOME 2 rewrite of the Windows game WUNO"
 ldesc: "Gnono is a rewrite for GNOME, under the GPL license, of the
 Windows card game WUNO. The objective of this classic game is to discard
