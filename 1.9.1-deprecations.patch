@@ -1,14 +1,107 @@
-? src/xpm/b0-new.xpm
-? src/xpm/b0.png
-? src/xpm/cards.xcf
-Index: src/interface.c
-===================================================================
-RCS file: /cvsroot/gnono/gnono/src/interface.c,v
-retrieving revision 1.16
-diff -u -r1.16 interface.c
---- src/interface.c	9 Aug 2007 13:57:32 -0000	1.16
-+++ src/interface.c	29 Apr 2009 01:32:40 -0000
-@@ -123,8 +123,8 @@
+--- origsrc/gnono-1.9.1/src/Makefile.am	2007-01-01 23:42:42.000000000 -0600
++++ src/gnono-1.9.1/src/Makefile.am	2013-08-11 23:23:23.036962500 -0500
+@@ -5,8 +5,6 @@ SUBDIRS = xpm
+ INCLUDES = \
+ 	-Wall -Werror \
+ 	-DG_LOG_DOMAIN=\"$(PACKAGE)\" \
+-	-DG_DISABLE_DEPRECATED \
+-	-DGTK_DISABLE_DEPRECATED \
+ 	-DLOCALEDIR="\"$(datadir)/locale\"" \
+ 	-DPIXMAPDIR="\"$(datadir)/pixmaps\"" \
+ 	$(LIBGNOMEUI_CFLAGS)
+--- origsrc/gnono-1.9.1/src/ai.c	2007-01-04 00:06:30.000000000 -0600
++++ src/gnono-1.9.1/src/ai.c	2013-08-11 23:24:16.910043900 -0500
+@@ -24,9 +24,7 @@
+ #include <config.h>
+ #endif
+ 
+-#include <glib/garray.h>
+-#include <glib/gmessages.h>
+-#include <glib/gtypes.h>
++#include <glib.h>
+ 
+ #include "cards.h"
+ #include "game.h"
+--- origsrc/gnono-1.9.1/src/ai.h	2007-01-04 00:09:00.000000000 -0600
++++ src/gnono-1.9.1/src/ai.h	2013-08-11 23:23:31.283434200 -0500
+@@ -23,7 +23,7 @@
+ #ifndef __GN_AI_H__
+ #define __GN_AI_H__
+ 
+-#include <glib/gtypes.h>
++#include <glib.h>
+ 
+ void computer_play (gboolean pickup);
+ 
+--- origsrc/gnono-1.9.1/src/cards.c	2007-01-04 00:09:00.000000000 -0600
++++ src/gnono-1.9.1/src/cards.c	2013-08-11 23:24:26.429588300 -0500
+@@ -25,10 +25,8 @@
+ #endif
+ 
+ #include <stdlib.h>			/* for rand() */
+-#include <glib/garray.h>
+-#include <glib/gmem.h>
+-#include <glib/gtypes.h>
+-#include <gdk-pixbuf/gdk-pixbuf-core.h>
++#include <glib.h>
++#include <gdk-pixbuf/gdk-pixbuf.h>
+ 
+ #include "cards.h"
+ #include "game.h"
+--- origsrc/gnono-1.9.1/src/cards.h	2007-01-04 00:09:00.000000000 -0600
++++ src/gnono-1.9.1/src/cards.h	2013-08-11 23:23:39.379897300 -0500
+@@ -23,8 +23,8 @@
+ #ifndef __GN_CARDS_H__
+ #define __GN_CARDS_H__
+ 
+-#include <glib/gtypes.h>
+-#include <gdk-pixbuf/gdk-pixbuf-core.h>
++#include <glib.h>
++#include <gdk-pixbuf/gdk-pixbuf.h>
+ 
+ static const gdouble GN_CARD_HEIGHT = 98.0;
+ static const gdouble GN_CARD_WIDTH = 68.0;
+--- origsrc/gnono-1.9.1/src/game.c	2007-01-04 00:09:00.000000000 -0600
++++ src/gnono-1.9.1/src/game.c	2013-08-11 23:24:39.181317700 -0500
+@@ -24,10 +24,8 @@
+ #include <config.h>
+ #endif
+ 
+-#include <glib/garray.h>
+-#include <glib/gmessages.h>
+-#include <glib/gtypes.h>
+-#include <gtk/gtkmain.h>
++#include <glib.h>
++#include <gtk/gtk.h>
+ #include <libgnome/gnome-config.h>
+ 
+ #include "ai.h"
+--- origsrc/gnono-1.9.1/src/game.h	2007-01-04 00:09:00.000000000 -0600
++++ src/gnono-1.9.1/src/game.h	2013-08-11 23:23:44.188172300 -0500
+@@ -23,7 +23,7 @@
+ #ifndef __GN_GAME_H__
+ #define __GN_GAME_H__
+ 
+-#include <glib/gtypes.h>
++#include <glib.h>
+ 
+ /*#define GN_DEBUG*/
+ 
+--- origsrc/gnono-1.9.1/src/interface.c	2013-08-11 23:29:02.664388100 -0500
++++ src/gnono-1.9.1/src/interface.c	2013-08-11 23:27:16.183297700 -0500
+@@ -28,9 +28,8 @@
+ #include <time.h>
+ #include <glib.h>
+ #include <glib/gi18n.h>
+-#include <gdk-pixbuf/gdk-pixbuf-core.h>
+-#include <gdk/gdkevents.h>
+-#include <gdk/gdkrgb.h>
++#include <gdk-pixbuf/gdk-pixbuf.h>
++#include <gdk/gdk.h>
+ #include <gtk/gtk.h>
+ #include <libgnomecanvas/gnome-canvas.h>
+ #include <libgnomecanvas/gnome-canvas-pixbuf.h>
+@@ -124,8 +123,8 @@ app_init (int argc, char *argv[])
  
      gtk_window_set_resizable (GTK_WINDOW (gn_app), FALSE);
  
@@ -19,7 +112,7 @@ diff -u -r1.16 interface.c
                          NULL);
  
      /* Create the menu bar */
-@@ -399,8 +399,8 @@
+@@ -398,8 +397,8 @@ panels_init (void)
                                    "fill_color", "red",
                                    NULL);
  
@@ -30,7 +123,7 @@ diff -u -r1.16 interface.c
                          GINT_TO_POINTER (GN_COLOR_RED));
  
      item = gnome_canvas_item_new (gn_pnl_color_picker,
-@@ -412,8 +412,8 @@
+@@ -411,8 +410,8 @@ panels_init (void)
                             "fill_color", "darkgreen",
                             NULL);
  
@@ -41,7 +134,7 @@ diff -u -r1.16 interface.c
                          GINT_TO_POINTER (GN_COLOR_GREEN));
  
      item = gnome_canvas_item_new (gn_pnl_color_picker,
-@@ -425,8 +425,8 @@
+@@ -424,8 +423,8 @@ panels_init (void)
                             "fill_color", "blue",
                             NULL);
  
@@ -52,7 +145,7 @@ diff -u -r1.16 interface.c
                          GINT_TO_POINTER (GN_COLOR_BLUE));
  
      item = gnome_canvas_item_new (gn_pnl_color_picker,
-@@ -438,8 +438,8 @@
+@@ -437,8 +436,8 @@ panels_init (void)
                             "fill_color", "yellow",
                             NULL);
  
@@ -63,7 +156,7 @@ diff -u -r1.16 interface.c
                          GINT_TO_POINTER (GN_COLOR_YELLOW));
  
      gci_color_picker_hide ();
-@@ -656,8 +656,8 @@
+@@ -655,8 +654,8 @@ gci_pick_up_set_image ()
                                                    "height", GN_CARD_HEIGHT,
                                                    NULL);
  
@@ -74,8 +167,30 @@ diff -u -r1.16 interface.c
      }
  
      if (deck_length () == 0) {
-@@ -761,8 +761,8 @@
-     g_object_unref (p);
+@@ -667,7 +666,7 @@ gci_pick_up_set_image ()
+ 
+     gnome_canvas_item_set (gci_pile_pick_up, "pixbuf", p, NULL);
+ 
+-    gdk_pixbuf_unref (p);
++    g_object_unref (p);
+ }
+ 
+ void
+@@ -689,7 +688,7 @@ gci_discard_set_image ()
+ 
+     gnome_canvas_item_set (gci_pile_discard, "pixbuf", p, NULL);
+ 
+-    gdk_pixbuf_unref (p);
++    g_object_unref (p);
+ }
+ 
+ void
+@@ -757,11 +756,11 @@ gci_hand_cards_init (gint player)
+                                      "height", GN_CARD_HEIGHT,
+                                      NULL);
+ 
+-    gdk_pixbuf_unref (p);
++    g_object_unref (p);
  
      if (get_player (player)->type == GN_PLAYER_TYPE_HUMAN) {
 -        g_signal_connect (GTK_OBJECT (gci_new), "event",
@@ -85,7 +200,13 @@ diff -u -r1.16 interface.c
                              GINT_TO_POINTER (make_card_click_data (player, 0)));
      }
  
-@@ -820,8 +820,8 @@
+@@ -814,13 +813,13 @@ gci_hand_cards_add (gint player, Card *c
+                                          "height", GN_CARD_HEIGHT,
+                                          NULL);
+ 
+-        gdk_pixbuf_unref (p);
++        g_object_unref (p);
+ 
          g_ptr_array_add (gci, gci_new);
  
          if (get_player (player)->type == GN_PLAYER_TYPE_HUMAN) {
@@ -96,7 +217,7 @@ diff -u -r1.16 interface.c
                                  GINT_TO_POINTER (make_card_click_data (player, get_player (player)->cards->len - 1)));
          }
      }
-@@ -851,8 +851,8 @@
+@@ -850,8 +849,8 @@ gci_hand_cards_remove (gint player, gint
                                                        G_SIGNAL_MATCH_DATA,
                                                        0, 0, NULL, NULL,
                                                        GINT_TO_POINTER (make_card_click_data (player, c + 1)));
@@ -107,14 +228,64 @@ diff -u -r1.16 interface.c
                                      GINT_TO_POINTER (make_card_click_data (player, c)));
              }
          }
-Index: src/preferences.c
-===================================================================
-RCS file: /cvsroot/gnono/gnono/src/preferences.c,v
-retrieving revision 1.6
-diff -u -r1.6 preferences.c
---- src/preferences.c	9 Aug 2007 13:57:32 -0000	1.6
-+++ src/preferences.c	29 Apr 2009 01:32:40 -0000
-@@ -71,11 +71,11 @@
+--- origsrc/gnono-1.9.1/src/interface.h	2007-01-04 00:09:01.000000000 -0600
++++ src/gnono-1.9.1/src/interface.h	2013-08-11 23:23:53.738718500 -0500
+@@ -23,9 +23,8 @@
+ #ifndef __GN_INTERFACE_H__
+ #define __GN_INTERFACE_H__
+ 
+-#include <glib/gtypes.h>
+-#include <gtk/gtkwidget.h>
+-#include <gtk/gtkwindow.h>
++#include <glib.h>
++#include <gtk/gtk.h>
+ 
+ #include "cards.h"
+ 
+--- origsrc/gnono-1.9.1/src/main.c	2007-01-04 00:09:01.000000000 -0600
++++ src/gnono-1.9.1/src/main.c	2013-08-11 23:25:11.909189600 -0500
+@@ -26,8 +26,8 @@
+ 
+ #include <unistd.h>
+ #include <glib/gi18n.h>
+-#include <glib/gmain.h>
+-#include <gtk/gtkmain.h>
++#include <glib.h>
++#include <gtk/gtk.h>
+ 
+ #include "interface.h"
+ 
+--- origsrc/gnono-1.9.1/src/players.c	2007-01-04 00:09:01.000000000 -0600
++++ src/gnono-1.9.1/src/players.c	2013-08-11 23:26:24.331331900 -0500
+@@ -24,11 +24,9 @@
+ #include <config.h>
+ #endif
+ 
+-#include <glib/garray.h>
+-#include <glib/gtypes.h>
++#include <glib.h>
+ #include <glib/gi18n.h>
+-#include <gtk/gtklabel.h>
+-#include <gtk/gtkwidget.h>
++#include <gtk/gtk.h>
+ #include <libgnome/gnome-config.h>
+ 
+ #include "ai.h"
+--- origsrc/gnono-1.9.1/src/players.h	2007-01-04 00:09:01.000000000 -0600
++++ src/gnono-1.9.1/src/players.h	2013-08-11 23:23:59.764063200 -0500
+@@ -23,8 +23,7 @@
+ #ifndef __GN_PLAYERS_H__
+ #define __GN_PLAYERS_H__
+ 
+-#include <glib/garray.h>
+-#include <glib/gtypes.h>
++#include <glib.h>
+ 
+ #include "cards.h"
+ 
+--- origsrc/gnono-1.9.1/src/preferences.c	2013-08-11 23:29:02.671388500 -0500
++++ src/gnono-1.9.1/src/preferences.c	2013-08-11 23:18:00.000000000 -0500
+@@ -71,11 +71,11 @@ dlg_preferences (GtkWidget *caller, gpoi
      add_game_play_page ();
      add_names_page ();
  
@@ -130,7 +301,7 @@ diff -u -r1.6 preferences.c
  
      _loaded = TRUE;
  
-@@ -107,15 +107,15 @@
+@@ -107,15 +107,15 @@ add_game_play_page (void)
      radio_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (_radio_cards_7));
      gtk_box_pack_start (GTK_BOX (vbox), _radio_cards_7, FALSE, FALSE, 0);
  
@@ -150,7 +321,7 @@ diff -u -r1.6 preferences.c
  
      /* Add a separator between the two frames */
      separator = gtk_vseparator_new ();
-@@ -137,23 +137,23 @@
+@@ -137,23 +137,23 @@ add_game_play_page (void)
      radio_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (_radio_score_100));
      gtk_box_pack_start (GTK_BOX (vbox), _radio_score_100, FALSE, FALSE, 0);
  
@@ -180,7 +351,7 @@ diff -u -r1.6 preferences.c
  
      /* Show everything and append the new page to the dialog */
      gtk_widget_show_all (hbox);
-@@ -201,8 +201,8 @@
+@@ -201,8 +201,8 @@ add_names_page (void)
                        0,
                        2, 2);
  
@@ -191,7 +362,7 @@ diff -u -r1.6 preferences.c
  
      _entry_name_computer = gtk_entry_new ();
      gtk_table_attach (GTK_TABLE (table),
-@@ -212,8 +212,8 @@
+@@ -212,8 +212,8 @@ add_names_page (void)
                        0,
                        2, 2);
  
@@ -202,3 +373,16 @@ diff -u -r1.6 preferences.c
  
      /* Show everything and append the new page to the dialog */
      gtk_widget_show_all (table);
+--- origsrc/gnono-1.9.1/src/preferences.h	2007-01-04 00:09:01.000000000 -0600
++++ src/gnono-1.9.1/src/preferences.h	2013-08-11 23:24:07.749519900 -0500
+@@ -23,8 +23,8 @@
+ #ifndef __GN_PREFERENCES_H__
+ #define __GN_PREFERENCES_H__
+ 
+-#include <glib/gtypes.h>
+-#include <gtk/gtkwidget.h>
++#include <glib.h>
++#include <gtk/gtk.h>
+ 
+ void dlg_preferences (GtkWidget *caller, gpointer data);
+ 

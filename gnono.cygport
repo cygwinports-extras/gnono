@@ -1,0 +1,18 @@
+inherit gnome2
+
+NAME="gnono"
+VERSION=1.9.1
+RELEASE=10
+CATEGORY="Games"
+SUMMARY="GNOME 2 rewrite of the Windows game WUNO"
+DESCRIPTION="Gnono is a rewrite for GNOME, under the GPL license, of the
+Windows card game WUNO. The objective of this classic game is to discard
+all of one's cards before the opponent does, by matching the value or
+color of the top discard (or playing a wild card)."
+HOMEPAGE="http://sourceforge.net/projects/gnono/"
+SRC_URI="mirror://sourceforge/gnono/gnono-${VERSION}.tar.bz2"
+PATCH_URI="
+	1.9.1-deprecations.patch
+	1.9.1-desktop.patch
+"
+
